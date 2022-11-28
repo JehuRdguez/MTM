@@ -284,3 +284,20 @@ $("#GasOffBtn").click(function () {
 $("#GasOnBtn").click(function () {
     app.sendToArduino("c");
 });
+
+$("#UltraOffBtn").click(function () {
+    app.sendToArduino("f");
+});
+
+$("#UltraOnBtn").click(function () {
+    app.sendToArduino("e");
+});
+
+
+$("#FlamaOffBtn").click(function () {
+    app.sendToArduino("h");
+});
+
+$("#FlamaOnBtn").click(function () {
+    app.sendToArduino("g");
+});
