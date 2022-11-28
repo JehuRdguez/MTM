@@ -1,52 +1,467 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name = "format-detection" content = "telephone=no"/>
-        <!--
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!--
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
         -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
-        <title>Light Control</title>
-        <script src="js/jquery-1.9.1.min.js"></script>
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/topcoat-mobile-light.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <title>MTM</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
 
-    </head>
-    <body>
-        <div class="app">
-            <div id="mainPage">
-                <h1>Dispositivos Bluetooth</h1>
-                <ul id="deviceList" class="topcoat-list">
-                </ul>
-                <br>
-                <button class="topcoat-button" id="refreshButton">Actualizar</button>
+</head>
+
+<body style="background-color: #FFFFFF;">
+
+    <!--PANTALLA DE CONEXIÓN-->
+    <div class="app">
+        <div id="mainPage">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #000000;">
             </div>
-                <div id="detailPage">
-                    <center><h1>MENÚ</h1></center>
-                    <br><br><br>
-                <div id="resultDiv">
-                </div>
-                <br><br>
-                <div>
-                    <a class="topcoat-button" id="boton">PRUEBA</a>
-                </div>
-                <br><br>
-                <div>
-                    <button class="topcoat-button" id="boton">PRUEBA</button>
-                </div>
-                <br>
-                <button class="topcoat-button" id="disconnectButton">Desconectar</button>
-            </div>
+            <h1>Dispositivos Bluetooth</h1>
             <br>
+            <ul id="deviceList" class="topcoat-list">
+            </ul>
+            <br>
+            <center>
+                <button class="btn1" id="refreshButton">Actualizar</button>
+            </center><br><br>
             <label for="">Conexión: </label>
             <div id="statusDiv"></div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/underscore-min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+
+
+        <!--PANTALLA DE INICIO-->
+        <div id="detailPage">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+            <h1>INICIO</h1>
+            <br><br><br>
+
+            <br><br>
+            <div>
+                <center>
+                    <button class="btn2" id="moduloGas"><img src="../img/gas.png" /> GAS</button>
+                </center><br>
+            </div>
+            <div>
+                <center>
+                    <button class="btn2" id="moduloUltra"><img src="../img/proximidad.png"
+                            style="width: 100%; height:130%;" /> PROXIMIDAD</button>
+                </center><br>
+            </div>
+            <div>
+                <center>
+                    <button class="btn2" id="moduloTemp"><img src="../img/temp.png" style="width: 100%; height:100%;" />
+                        TEMPERATURA</button>
+                </center><br>
+            </div>
+            <div>
+                <center>
+                    <button class="btn2" id="moduloFuego"><img src="../img/fuego.png"
+                            style="width: 30%; height:100%;" /> FLAMA</button>
+                </center><br>
+            </div>
+            <div>
+                <center>
+                    <button class="btn2" id="moduloLuz"><img src="../img/luz.png" style="width: 30%; height:100%;" />
+                        LUZ</button>
+                </center><br>
+            </div>
+
+
+
+            <br>
+            <center>
+                <button class="btn1" id="disconnectButton">Desconectar</button>
+            </center>
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+        </div>
+
+        <div id="pantallaGas">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+
+            <br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                GAS
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="gasDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+
+            <center>
+                <div>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    AUTOMÁTICO
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button id="GasOnBtn"><img width="60%" height="140%"
+                                            src="../img/onn.png" /></button>
+                                    <button  id="GasOffBtn"><img width="60%" height="140%"
+                                            src="../img/offf.png" /></button>
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+
+            <center>
+                <div>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    VENTILACIÓN
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button class="btn1" id="boton7"><img width="30%" height="70%"
+                                                src="../img/ventionn.png" /></button><br>
+
+                                        <button class="btn1" id="boton8"><img width="20%" height="70%"
+                                                src="../img/ventioff.png" /></button><br>
+
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+
+            <!--BOTÓN DE INICIO-->
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+            <a id="inicio"><img src="../img/home3.png" class="button" width="60" height="60"
+                    style="border-radius: 50%; border: solid; background-color: #FFFFFF; "></a>
+        </div>
+
+        <div id="pantallaProximidad">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+
+            <br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                DISTANCIA
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="ultrasonicoDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+            <br><br><br><br><br>
+
+
+            <div>
+                <center>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    ALARMA
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button class="btn1" id="boton1"><img src="../img/alarmaon.png" /></button><br>
+                                        <!--<button class="btn1" id="boton2"><img src="../img/alarmaoff.png"/></button><br>
+                                            -->
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            </center>
+
+            <!--BOTÓN DE INICIO-->
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+            <a id="inicio2"><img src="../img/home3.png" class="button" width="60" height="60"
+                    style="border-radius: 50%; border: solid; background-color: #FFFFFF; "></a>
+        </div>
+
+        <div id="pantallaTemp">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+
+            <br><br><br><br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                TEMPERATURA
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="tempDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+            <br><br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                HUMEDAD
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="humDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+            <br><br><br><br><br>
+
+            <!--BOTÓN DE INICIO-->
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+            <a id="inicio3"><img src="../img/home3.png" class="button" width="60" height="60"
+                    style="border-radius: 50%; border: solid; background-color: #FFFFFF; "></a>
+        </div>
+
+        <div id="pantallaFlama">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+
+            <br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                ESTADO
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="fuegoDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+            <br><br><br><br><br>
+
+
+            <div>
+                <center>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    PUERTA
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button class="btn1" id="boton4"><img width="30%" height="80%"
+                                                src="../img/puertaon.png" /></button><br>
+                                        <button class="btn1" id="boton3"><img width="35%" height="75%"
+                                                src="../img/puertaoff.png" /></button><br>
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            </center>
+
+            <!--BOTÓN DE INICIO-->
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+            <a id="inicio4"><img src="../img/home3.png" class="button" width="60" height="60"
+                    style="border-radius: 50%; border: solid; background-color: #FFFFFF; "></a>
+        </div>
+
+        <div id="pantallaLuz">
+            <div style="background-color: #1d936b; ">
+                <img src="../img/logo11.png" class="logo-img" width="160" height="50">
+                <hr style="background-color: #F2F875;">
+            </div>
+
+            <br><br>
+            <center>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">
+                                NIVEL DE LUZ
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="fotorresistenciaDiv">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </center>
+
+                        <center>
+                <div>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    AUTOMÁTICO
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button id="LuzOnBtn"><img width="60%" height="140%"
+                                            src="../img/onn.png" /></button>
+                                    <button  id="LuzOffBtn"><img width="60%" height="140%"
+                                            src="../img/offf.png" /></button>
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </center>
+            <center>
+            <div >
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">
+                                    LUCES
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <center>
+                                        <button class="btn1" id="boton5"><img width="40%" height="70%"
+                                                src="../img/luzon.png" /></button><br>
+                                        <button class="btn1" id="boton6"><img width="40%" height="70%"
+                                                src="../img/luzoff.png" /></button><br>
+                                    </center>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            </center>
+
+            <!--BOTÓN DE INICIO-->
+            <div id="barraInicio" style="background-color: #0A372E;">
+                <a><img src="../img/casa.png" class="button" width="45" height="45"
+                        style="border-radius: 50%; border: solid; background-color: #FFFFFF; visibility: hidden;"></a>
+            </div>
+            <a id="inicio5"><img src="../img/home3.png" class="button" width="60" height="60"
+                    style="border-radius: 50%; border: solid; background-color: #FFFFFF; "></a>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</body>
+
 </html>
